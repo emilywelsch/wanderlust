@@ -6,38 +6,36 @@ require_relative '../lib/destination.rb'
 
 class CLI
   # index_url = "https://www.afar.com/travel-guides/all-travel-guides"
+  continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"]
 
   def call
     puts "                "
-    puts "·÷±‡± Welcome to Wanderlust ±‡±÷·".colorize(:blue)
+    puts ">>>>---------------- ·÷±‡± Welcome to Wanderlust ±‡±÷· ---------------->".colorize(:blue)
+    puts "                         your global travel guide ".colorize(:cyan)
     puts "                "
     continent_list
   end
 
   def continent_list
     puts "Which continent would you like to explore? (Enter number or exit)"
-    puts "1. Africa"
-    puts "2. Asia"
-    puts "3. Europe"
-    puts "4. North America"
-    puts "5. Oceania"
-    puts "6. South America"
+      continents.each.with_index(1) do |continent, i|
+        puts "#{i}. #{continent}"
+      end
     puts "                "
     which_continent?
   end
 
-  def which_continent? # MAKE CASE STATEMENT FOR ALL OPTIONS
-    user_input = gets.chomp
-    if user_input == "exit"
-      puts "See you on your next adventure!".colorize(:blue)
-      exit
-    elsif
-      !user_input.to_i(>6)
-      puts "Invalid entry. Please try again.".colorize(:red)
-      destination_selector
-    end
-    display_details(user_input)
-    list
+  def which_continent?
+    case user_input = gets.chomp
+      when "exit"
+        puts "See you on your next adventure!".colorize(:blue)
+        exit
+      when "1", "2", "3", "4", "5", "6"
+        display_details(user_input) # CHANGE THIS TO LIST 
+      else
+        puts "Invalid entry. Please try again.".colorize(:red)
+        continent_list
+      end
   end
 
   def list
@@ -118,7 +116,7 @@ class CLI
   end
 
   def list_again?
-    puts "Would you like to return to the list of travel destinations in #{destination.region_type}? (Please enter yes or no)".colorize(:cyan)
+    puts "Would you like to return to the list of travel destinations in #{destination.continents[user_input.to_i-1]}? (Please enter yes or no)".colorize(:cyan)
     user_input = gets.chomp
     if user_input == "yes"
       puts "                     "

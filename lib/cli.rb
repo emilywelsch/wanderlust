@@ -11,13 +11,14 @@ class CLI
   def call
     puts "                "
     puts ">>>>---------------- ·÷±‡± Welcome to Wanderlust ±‡±÷· ---------------->".colorize(:blue)
-    puts "                         your global travel guide ".colorize(:cyan)
+    puts "                        your guide to global travel "
     puts "                "
     continent_list
   end
 
   def continent_list
-    puts "Which continent would you like to explore? (Enter number or exit)"
+    continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"]
+    puts "Which continent would you like to explore? (Enter number or exit)".colorize(:blue)
       continents.each.with_index(1) do |continent, i|
         puts "#{i}. #{continent}"
       end
@@ -28,18 +29,20 @@ class CLI
   def which_continent?
     case user_input = gets.chomp
       when "exit"
-        puts "See you on your next adventure!".colorize(:blue)
+        puts "Safe travels!".colorize(:blue)
         exit
       when "1", "2", "3", "4", "5", "6"
-        display_details(user_input) # CHANGE THIS TO LIST 
+        list(user_input)
       else
         puts "Invalid entry. Please try again.".colorize(:red)
+        puts "                "
         continent_list
       end
   end
 
-  def list
-    puts "Available travel destinations around the world (in alphabetical order by location):".colorize(:cyan)
+  def list(user_input)
+    continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"]
+    puts "Which popular travel destinations in #{continents[user_input.to_i-1]} would you like to learn more about? (Enter number or exit)".colorize(:blue)
     make_destinations
     # add_attributes_to_destinations
     display_destinations
@@ -59,10 +62,10 @@ class CLI
 
   def display_destinations
     Destination.all.each.with_index(1) do |destination, i|
-      puts "#{i}. #{destination.region_type} - #{destination.location}"
+      puts "#{i}. #{destination.location}"
       end
     puts "                "
-    destination_selector
+    # destination_selector
   end
 
   def destination_selector

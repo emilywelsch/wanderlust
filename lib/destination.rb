@@ -1,13 +1,13 @@
 # require "wanderlust/version"
 
 class Destination
-  attr_accessor :name, :location, :gist, :time, :transportation, :cant_miss, :food, :culture, :local_knowledge, :resources, :url
+  attr_accessor :location, :gist, :time, :transportation, :cant_miss, :food, :culture, :local_knowledge, :resources, :url
 
   @@all = []
 
   def initialize(destination_hash)
     destination_hash.each {|key, value| self.send("#{key}=", value)}
-    @@all << self unless @@all.any? {|destination| destination.name == self.name} #change to .url once scraper is working
+    @@all << self unless @@all.any? {|destination| destination.location == self.location} #change to .url once scraper is working
   end
 
   def self.all
@@ -29,7 +29,7 @@ class Destination
   end
 
   def check_attributes_for_nil
-  attributes = ["name", "location", "gist", "time", "transportation", "cant_miss", "food", "culture", "local_knowledge", "resources", "url']
+  attributes = ["location", "gist", "time", "transportation", "cant_miss", "food", "culture", "local_knowledge", "resources", "url"]
   empty = [" ", "", nil]
     attributes.each do |var|
       if empty.any? { |e| self.send("#{var}") == e}

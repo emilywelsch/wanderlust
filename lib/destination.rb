@@ -1,7 +1,7 @@
 # require "wanderlust/version"
 
 class Destination
-  attr_accessor :name, :location, :distance, :time, :best_time, :description, :url, :tips
+  attr_accessor :name, :location, :gist, :time, :transportation, :cant_miss, :food, :culture, :local_knowledge, :resources, :url
 
   @@all = []
 
@@ -29,7 +29,7 @@ class Destination
   end
 
   def check_attributes_for_nil
-  attributes = ["name", "location", "distance", "time", "best_time", "description", "url", "tips"]
+  attributes = ["name", "location", "gist", "time", "transportation", "cant_miss", "food", "culture", "local_knowledge", "resources", "url']
   empty = [" ", "", nil]
     attributes.each do |var|
       if empty.any? { |e| self.send("#{var}") == e}

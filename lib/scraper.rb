@@ -8,7 +8,8 @@ require_relative '../lib/destination.rb'
 class Scraper
 
   def self.scrape_destinations
-    destinations = [{:name=>"Inca destination", :location=>"Peru", :distance=>"26 miles", :time=>"4 days", :best_time=>"May to September", :description=>"One of the most popular hikes in the world, the Inca destination takes you through 26 miles of grueling inclines and declines. You get a chance to explore ruins, jungle, and beautiful mountain scenery, and of course, end the hike at Machu Picchu.", :url=>"/25-best-hikes-in-the-world-bucket-list/", :tips=>"Have fun!"}]
+    # set this up so all locations go into continent and then continent goes into continents
+    destinations = [{:location=>"Amsterdam", :gist=>"A paragraph of information.", :time=>"A paragraph of information.", :transportation=>"A paragraph of information.", :cant_miss=>"A paragraph of information.", :food=>"A paragraph of information.", :culture=>"A paragraph of information.", :local_knowledge=>"A paragraph of information.", :resources=>"A paragraph of information.", :url=>"/the-netherlands/amsterdam/guide"}]
     # destinations = []
     # doc = Nokogiri::HTML(open("https://www.afar.com/travel-guides/all-travel-guides"))
     #   doc.css('div._e296pg').each do |heading|

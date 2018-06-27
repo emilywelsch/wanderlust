@@ -1,0 +1,10 @@
+require 'pry'
+require 'nokogiri'
+require 'open-uri'
+require 'require_all'
+require 'colorize'
+
+require_relative '../lib/wanderlust/version.rb'
+require_relative '../lib/cli.rb'
+require_relative '../lib/destination.rb'
+require_relative '../lib/scraper.rb'

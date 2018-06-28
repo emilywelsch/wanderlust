@@ -11,7 +11,12 @@ class Scraper
     # set this up so all locations go into continent and then continent goes into continents
     # destinations = [{:location=>"Amsterdam", :gist=>"A paragraph of information.", :time=>"A paragraph of information.", :transportation=>"A paragraph of information.", :cant_miss=>"A paragraph of information.", :food=>"A paragraph of information.", :culture=>"A paragraph of information.", :local_knowledge=>"A paragraph of information.", :resources=>"A paragraph of information.", :url=>"/the-netherlands/amsterdam/guide"}]
     destinations = []
-    doc = Nokogiri::HTML(open("https://www.afar.com/travel-guides/all-travel-guides"))
+    # doc = Nokogiri::HTML(open("https://www.afar.com/travel-guides/"))
+    # doc = Nokogiri::HTML(open("https://www.afar.com/travel-guides/all-travel-guides"))
+    doc = Nokogiri::HTML(open("https://www.afar.com/travel-guides/the-netherlands/amsterdam/guide/"))
+
+    # doc = Nokogiri::HTML(open("https://meh.com/"))
+    binding.pry
       doc.css('li.content-container').each do |location|
         binding.pry
         destination_info = {}

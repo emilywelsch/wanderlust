@@ -9,21 +9,17 @@ class Scraper
 
   def self.scrape_destinations
     # set this up so all locations go into continent and then continent goes into continents
-    destinations = [{:location=>"Amsterdam", :gist=>"A paragraph of information.", :time=>"A paragraph of information.", :transportation=>"A paragraph of information.", :cant_miss=>"A paragraph of information.", :food=>"A paragraph of information.", :culture=>"A paragraph of information.", :local_knowledge=>"A paragraph of information.", :resources=>"A paragraph of information.", :url=>"/the-netherlands/amsterdam/guide"}]
-    # destinations = []
-    # doc = Nokogiri::HTML(open("https://www.afar.com/travel-guides/all-travel-guides"))
-    #   doc.css('div._e296pg').each do |heading|
-    #     # binding.pry
-    #     destination_info = {}
-    #     destination_info[:name] = heading.css('div._18nb9p').text
-    #     destination_info[:location] = heading.css('div._1uel1v2').text
-    #     destination_info[:distance] = heading.css('div._vpdeeg').text
-    #     destination_info[:time] = heading.css('span._q27mtmr').text
-    #     destination_info[:best_time] = heading.css('span._1m8bb6v').text
-    #     destination_info[:description] = heading.css('span._1m8bb6v').text
-    #     destination_info[:url] = heading.css('a').attr("href").value
-    #     destinations << destination_info # Can I use sort_by on destination_info to alphabetize hashes?
-    #   end
+    # destinations = [{:location=>"Amsterdam", :gist=>"A paragraph of information.", :time=>"A paragraph of information.", :transportation=>"A paragraph of information.", :cant_miss=>"A paragraph of information.", :food=>"A paragraph of information.", :culture=>"A paragraph of information.", :local_knowledge=>"A paragraph of information.", :resources=>"A paragraph of information.", :url=>"/the-netherlands/amsterdam/guide"}]
+    destinations = []
+    doc = Nokogiri::HTML(open("https://www.afar.com/travel-guides/all-travel-guides"))
+      doc.css('li.content-container').each do |location|
+        binding.pry
+        destination_info = {}
+        destination_info[:location] = location.css('a').attr("data-google-label").text
+        # destination_info[:location] = location.css('div._1uel1v2').text
+        destination_info[:url] = location.css('a').attr("href").value
+        destinations << destination_info # Can I use sort_by on destination_info to alphabetize hashes?
+      end
     destinations
   end
 
